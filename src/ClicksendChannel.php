@@ -41,9 +41,11 @@ class ClicksendChannel
 
         $message = method_exists($notification, 'toClicksend')
             ? $notification->toClicksend($notifiable)
-            : method_exists($notification, 'toSms')
-            ? $notification->toSms($notifiable)
-                : null;
+            : (
+            method_exists($notification, 'toSms')
+                ? $notification->toSms($notifiable)
+                : null
+            );
 
         if (is_string($message)) {
             $message = (new SmsMessage())
