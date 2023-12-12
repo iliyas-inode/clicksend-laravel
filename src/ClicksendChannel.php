@@ -63,7 +63,7 @@ class ClicksendChannel
                     ->setMessages([$message])
             );
         } catch (ApiException $e) {
-            throw CouldNotSendNotification::serviceRespondedWithAnError($e->getMessage());
+            throw CouldNotSendNotification::serviceRespondedWithAnError($e->getResponseBody());
         }
     }
 }
